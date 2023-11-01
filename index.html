@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form Validation with Padding</title>
+    <style>
+        .error {
+            color: red;
+        }
+
+        .error-border {
+            border: 1px solid red;
+        }
+
+        .form-component {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            // Get form input values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const website = document.getElementById("website").value;
+            const message = document.getElementById("message").value;
+
+            // Reset error messages and borders
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("websiteError").textContent = "";
+            document.getElementById("messageError").textContent = "";
+
+            // Remove error borders
+            document.getElementById("name").classList.remove("error-border");
+            document.getElementById("email").classList.remove("error-border");
+            document.getElementById("website").classList.remove("error-border");
+            document.getElementById("message").classList.remove("error-border");
+
+            // Perform validation
+            let valid = true;
+            if (name.trim() === "") {
+                document.getElementById("nameError").textContent = "This field is required";
+                document.getElementById("name").classList.add("error-border");
+                valid = false;
+            }
+            if (email.trim() === "") {
+                document.getElementById("emailError").textContent = "This field is required";
+                document.getElementById("email").classList.add("error-border");
+                valid = false;
+            }
+            if (website.trim() === "") {
+                document.getElementById("websiteError").textContent = "This field is required";
+                document.getElementById("website").classList.add("error-border");
+                valid = false;
+            }
+            if (message.trim() === "") {
+                document.getElementById("messageError").textContent = "This field is required";
+                document.getElementById("message").classList.add("error-border");
+                valid = false;
+            }
+
+            return valid;
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Contact Us</h2>
+    <form onsubmit="return validateForm()">
+        <div class="form-component row mb-3">
+            <label class="col-sm-2 col-form-label" for="name">Name:</label>
+            <div class="col-sm-10">
+                <input type="text" id="name" name="name">
+            </div>
+
+            <span id="nameError" class="error"></span>
+        </div>
+        <div class="form-component row mb-3">
+            <label class="col-sm-2 col-form-label" for="email">Email:</label>
+            <div class="col-sm-10">
+                <input type="email" id="email" name="email">
+            </div>
+
+            <span id="emailError" class="error"></span>
+        </div>
+        <div class="form-component row mb-3">
+            <label class="col-sm-2 col-form-label" for="website">Website:</label>
+            <div class="col-sm-10">
+                <input type="text" id="website" name="website">
+            </div>
+
+            <span id="websiteError" class="error"></span>
+        </div>
+        <div class="form-component row mb-3">
+            <label class="col-sm-2 col-form-label" for="message">Message:</label>
+            <div class="col-sm-10">
+                <textarea id="message" name="message" rows="4"></textarea>
+            </div>
+
+            <span id="messageError" class="error"></span>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
